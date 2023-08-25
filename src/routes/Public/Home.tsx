@@ -162,10 +162,10 @@ export default function HomePage(): JSX.Element {
     if (valueMax) {
       const updatedUsersWinnerLoser: any = listUsers?.map((e: any, index) => {
         if (e.status) {
-          if (valueMax === e.value) {
-            return { ...e, coins: e.coins + 900, nameWL: 'Winner' }
-          } else if (valuePeace?.length === 1) {
+         if (valuePeace?.length === 1) {
             return { ...e, nameWL: 'Hòa' }
+          } else if (valueMax === e.value) {
+             return { ...e, coins: e.coins + 900, nameWL: 'Winner' }
           } else {
             return { ...e, coins: e.coins - 900, nameWL: 'Loser' }
           }
@@ -180,6 +180,13 @@ export default function HomePage(): JSX.Element {
 
   const hanldeShuffle = () => {
     if (deckId) {
+    
+      const remoteImages = listUsers?.map((x: ListUserType, y: number) => {
+          return { ...x, images: [] }
+      })
+
+      setUselistUsers(remoteImages)
+
       postShuffleMutate.mutate({
         deck_id: deckId,
       })
