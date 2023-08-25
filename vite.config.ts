@@ -5,9 +5,9 @@ import { defineConfig } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // esbuild: {
-  //   drop: ['console', 'debugger'],
-  // },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   publicDir: 'public',
   resolve: {
     alias: [
@@ -21,4 +21,5 @@ export default defineConfig({
       { find: 'routes', replacement: path.resolve(__dirname, 'src/routes') },
     ],
   },
+  base: './'
 })
